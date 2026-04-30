@@ -1,96 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Midnight Canteen — dark only */
+    --background: 36 60% 3%;           /* #0d0a04 */
+    --foreground: 39 75% 88%;          /* #f5e8cc */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 40 60% 5%;                 /* #111008 */
+    --card-foreground: 39 75% 88%;
+    --card-hover: 36 78% 7%;           /* #1c1507 */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 40 60% 5%;
+    --popover-foreground: 39 75% 88%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 24 75% 52%;             /* #e07b2a burnt amber */
+    --primary-foreground: 36 60% 4%;
+    --primary-glow: 28 90% 60%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 36 78% 7%;
+    --secondary-foreground: 39 75% 88%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 40 60% 5%;
+    --muted-foreground: 36 32% 36%;    /* #7a6040 */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 24 75% 52%;
+    --accent-foreground: 36 60% 4%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 39 75% 88%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 36 53% 11%;              /* #2a1f0d */
+    --input: 36 53% 11%;
+    --ring: 24 75% 52%;
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 0.875rem;
   }
 }
 
@@ -98,8 +45,59 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
-  body {
+  html, body, #root {
     @apply bg-background text-foreground;
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+  }
+  .font-display {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer components {
+  /* Custom amber range slider */
+  .amber-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: hsl(var(--border));
+    border-radius: 99px;
+    outline: none;
+  }
+  .amber-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 99px;
+    background: hsl(var(--primary));
+    border: 2px solid hsl(var(--background));
+    cursor: grab;
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.4), 0 0 18px hsl(var(--primary) / 0.45);
+    transition: transform 0.1s ease;
+  }
+  .amber-slider::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+  }
+  .amber-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 99px;
+    background: hsl(var(--primary));
+    border: 2px solid hsl(var(--background));
+    cursor: grab;
+    box-shadow: 0 0 18px hsl(var(--primary) / 0.45);
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs uppercase tracking-wider;
+  }
+
+  .amber-glow {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.3), 0 8px 28px -8px hsl(var(--primary) / 0.4);
   }
 }
