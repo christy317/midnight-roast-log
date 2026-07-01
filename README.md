@@ -37,6 +37,14 @@ npm run dev
 
 Open `http://localhost:5173` and start logging batches.
 
+## Live demo
+
+Try it at [midnight-roast-log.lovable.app](https://midnight-roast-log.lovable.app)
+
+## About
+
+This is a personal project built with Lovable — both a useful tool for my partner's roast experiments and a way to learn React and design in practice.
+
 ## Data
 
 Everything is stored in your browser's `localStorage` under the key `roast.batches.v1`. Export or back up your data by copying the value from your browser's dev tools if needed.
